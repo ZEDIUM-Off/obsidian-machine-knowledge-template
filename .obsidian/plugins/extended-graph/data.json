@@ -46,7 +46,7 @@
   ],
   "usePluginForIcon": false,
   "usePluginForIconColor": false,
-  "useParentIcon": false,
+  "useParentIcon": true,
   "usePropertiesForName": [
     "title"
   ],
@@ -58,10 +58,18 @@
   "delay": 500,
   "states": [
     {
-      "id": "machine-atlas",
-      "name": "Machine Atlas",
+      "id": "workspace-atlas",
+      "name": "Workspace Atlas",
       "engineOptions": {
-        "colorGroups": [],
+        "colorGroups": [
+          {
+            "query": "path:\"example-project/\"",
+            "color": {
+              "a": 1,
+              "rgb": 9133302
+            }
+          }
+        ],
         "search": "",
         "hideUnresolved": true,
         "showAttachments": false,
@@ -75,7 +83,216 @@
         "nodeSizeMultiplier": 1.15,
         "showArrow": false,
         "textFadeMultiplier": 0,
-        "centerStrength": 0.35,
+        "centerStrength": 0,
+        "linkDistance": 160,
+        "linkStrength": 0.8,
+        "repelStrength": 14
+      },
+      "toggleTypes": {
+        "folder": [],
+        "tag": [],
+        "link": []
+      },
+      "logicTypes": {
+        "folder": "OR",
+        "tag": "OR",
+        "link": "OR"
+      },
+      "pinNodes": {},
+      "hiddenLegendRows": [],
+      "collapsedLegendRows": [],
+      "enableLayers": false,
+      "currentLayerLevel": 0
+    },
+    {
+      "id": "current-truth",
+      "name": "Current Truth",
+      "engineOptions": {
+        "colorGroups": [
+          {
+            "query": "path:\"example-project/\"",
+            "color": {
+              "a": 1,
+              "rgb": 9133302
+            }
+          }
+        ],
+        "search": "[authority:canonical] -[status:superseded]",
+        "hideUnresolved": true,
+        "showAttachments": false,
+        "showOrphans": true,
+        "showTags": false,
+        "localBacklinks": true,
+        "localForelinks": true,
+        "localInterlinks": false,
+        "localJumps": 1,
+        "lineSizeMultiplier": 1.2,
+        "nodeSizeMultiplier": 1.15,
+        "showArrow": false,
+        "textFadeMultiplier": 0,
+        "centerStrength": 0,
+        "linkDistance": 160,
+        "linkStrength": 0.8,
+        "repelStrength": 14
+      },
+      "toggleTypes": {
+        "folder": [],
+        "tag": [],
+        "link": []
+      },
+      "logicTypes": {
+        "folder": "OR",
+        "tag": "OR",
+        "link": "OR"
+      },
+      "pinNodes": {},
+      "hiddenLegendRows": [],
+      "collapsedLegendRows": [],
+      "enableLayers": false,
+      "currentLayerLevel": 0
+    },
+    {
+      "id": "human-review",
+      "name": "Human Review",
+      "engineOptions": {
+        "colorGroups": [
+          {
+            "query": "path:\"example-project/\"",
+            "color": {
+              "a": 1,
+              "rgb": 9133302
+            }
+          }
+        ],
+        "search": "tag:#review/human-required",
+        "hideUnresolved": true,
+        "showAttachments": false,
+        "showOrphans": true,
+        "showTags": false,
+        "localBacklinks": true,
+        "localForelinks": true,
+        "localInterlinks": false,
+        "localJumps": 1,
+        "lineSizeMultiplier": 1.2,
+        "nodeSizeMultiplier": 1.15,
+        "showArrow": false,
+        "textFadeMultiplier": 0,
+        "centerStrength": 0,
+        "linkDistance": 160,
+        "linkStrength": 0.8,
+        "repelStrength": 14
+      },
+      "toggleTypes": {
+        "folder": [],
+        "tag": [],
+        "link": []
+      },
+      "logicTypes": {
+        "folder": "OR",
+        "tag": "OR",
+        "link": "OR"
+      },
+      "pinNodes": {},
+      "hiddenLegendRows": [],
+      "collapsedLegendRows": [],
+      "enableLayers": false,
+      "currentLayerLevel": 0
+    },
+    {
+      "id": "agent-surface",
+      "name": "Agent Surface",
+      "engineOptions": {
+        "colorGroups": [
+          {
+            "query": "path:\".agents/\"",
+            "color": {
+              "a": 1,
+              "rgb": 16096779
+            }
+          },
+          {
+            "query": "path:\".pi/\"",
+            "color": {
+              "a": 1,
+              "rgb": 9133302
+            }
+          },
+          {
+            "query": "path:\".agents-global/\"",
+            "color": {
+              "a": 1,
+              "rgb": 440020
+            }
+          },
+          {
+            "query": "path:\".pi-global/\"",
+            "color": {
+              "a": 1,
+              "rgb": 3900150
+            }
+          }
+        ],
+        "search": "(path:\".agents/\" OR path:\".pi/\" OR path:\".agents-global/\" OR path:\".pi-global/\")",
+        "hideUnresolved": true,
+        "showAttachments": false,
+        "showOrphans": true,
+        "showTags": false,
+        "localBacklinks": true,
+        "localForelinks": true,
+        "localInterlinks": false,
+        "localJumps": 1,
+        "lineSizeMultiplier": 1.2,
+        "nodeSizeMultiplier": 1.15,
+        "showArrow": false,
+        "textFadeMultiplier": 0,
+        "centerStrength": 0,
+        "linkDistance": 160,
+        "linkStrength": 0.8,
+        "repelStrength": 14
+      },
+      "toggleTypes": {
+        "folder": [],
+        "tag": [],
+        "link": []
+      },
+      "logicTypes": {
+        "folder": "OR",
+        "tag": "OR",
+        "link": "OR"
+      },
+      "pinNodes": {},
+      "hiddenLegendRows": [],
+      "collapsedLegendRows": [],
+      "enableLayers": false,
+      "currentLayerLevel": 0
+    },
+    {
+      "id": "project-example-project",
+      "name": "Project · example-project",
+      "engineOptions": {
+        "colorGroups": [
+          {
+            "query": "path:\"example-project/\"",
+            "color": {
+              "a": 1,
+              "rgb": 9133302
+            }
+          }
+        ],
+        "search": "path:\"example-project/\"",
+        "hideUnresolved": true,
+        "showAttachments": false,
+        "showOrphans": true,
+        "showTags": false,
+        "localBacklinks": true,
+        "localForelinks": true,
+        "localInterlinks": false,
+        "localJumps": 1,
+        "lineSizeMultiplier": 1.2,
+        "nodeSizeMultiplier": 1.15,
+        "showArrow": false,
+        "textFadeMultiplier": 0,
+        "centerStrength": 0,
         "linkDistance": 160,
         "linkStrength": 0.8,
         "repelStrength": 14
@@ -97,7 +314,7 @@
       "currentLayerLevel": 0
     }
   ],
-  "startingStateID": "machine-atlas",
+  "startingStateID": "workspace-atlas",
   "saveConfigsWithState": false,
   "syncDefaultState": false,
   "interactiveSettings": {

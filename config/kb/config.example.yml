@@ -1,0 +1,6 @@
+vault: /path/to/workspaces
+clearance: internal
+selected_docs: []
+qmd:
+  lexical_collection: knowledge-agent
+  full_collection: knowledge-full

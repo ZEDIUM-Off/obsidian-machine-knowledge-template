@@ -1,13 +1,17 @@
 {
   "nodes": [
-    { "id": "home", "type": "file", "file": "Home.md", "x": 0, "y": 0, "width": 320, "height": 220 },
-    { "id": "rules", "type": "file", "file": "knowledge/index.md", "x": 430, "y": 0, "width": 360, "height": 220 },
-    { "id": "flow", "type": "text", "text": "# Flux de connaissance\n\nCapture → Preuve → Analyse → Décision → Vérité actuelle", "x": 0, "y": 320, "width": 360, "height": 180, "color": "4" },
-    { "id": "views", "type": "text", "text": "# Vues dérivées\n\nBases · Canvas · Graphes\n\nElles facilitent l'exploration sans devenir autorité.", "x": 470, "y": 320, "width": 360, "height": 180, "color": "6" }
+    { "id": "home", "type": "file", "file": "Home.md", "x": 0, "y": 0, "width": 300, "height": 180 },
+    { "id": "global", "type": "file", "file": "docs/index.md", "x": 420, "y": -220, "width": 340, "height": 200, "color": "4" },
+    { "id": "projects", "type": "file", "file": "docs/projects.md", "x": 420, "y": 40, "width": 340, "height": 200, "color": "6" },
+    { "id": "agents", "type": "file", "file": "docs/agents/state-and-skills.md", "x": -420, "y": -220, "width": 340, "height": 200, "color": "3" },
+    { "id": "graph", "type": "file", "file": "docs/agents/extended-graph.md", "x": -420, "y": 40, "width": 340, "height": 200, "color": "5" },
+    { "id": "flow", "type": "text", "text": "# Authority flow\n\nraw → evidence → work → decision → truth", "x": 0, "y": 300, "width": 360, "height": 160, "color": "2" }
   ],
   "edges": [
-    { "id": "home-rules", "fromNode": "home", "fromSide": "right", "toNode": "rules", "toSide": "left" },
-    { "id": "flow-home", "fromNode": "flow", "fromSide": "top", "toNode": "home", "toSide": "bottom" },
-    { "id": "rules-views", "fromNode": "rules", "fromSide": "bottom", "toNode": "views", "toSide": "top" }
+    { "id": "home-global", "fromNode": "home", "fromSide": "right", "toNode": "global", "toSide": "left" },
+    { "id": "home-projects", "fromNode": "home", "fromSide": "right", "toNode": "projects", "toSide": "left" },
+    { "id": "agents-home", "fromNode": "agents", "fromSide": "right", "toNode": "home", "toSide": "left" },
+    { "id": "graph-home", "fromNode": "graph", "fromSide": "right", "toNode": "home", "toSide": "left" },
+    { "id": "home-flow", "fromNode": "home", "fromSide": "bottom", "toNode": "flow", "toSide": "top" }
   ]
 }

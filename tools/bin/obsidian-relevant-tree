@@ -1,0 +1,170 @@
+#!/usr/bin/env python3
+"""Return the remote vault entries relevant to Obsidian."""
+
+import argparse
+import json
+import os
+import stat
+import tempfile
+from pathlib import Path
+
+VAULT = Path(os.environ.get("KB_VAULT", Path.home() / "workspaces")).resolve()
+CONFIG = Path.home() / ".config/kb/obsidian-tree-ignore.txt"
+DEFAULT_IGNORES = {
+    ".git", "node_modules", ".svn", ".hg", "__pycache__", ".venv", "venv",
+    ".tox", ".mypy_cache", ".pytest_cache", "target", "dist", "build", ".next",
+    ".nuxt", ".cache", ".gradle", ".idea", "vendor", ".terraform", ".julia",
+    ".cargo", ".rustup", ".npm", ".conda", ".gem",
+}
+RELEVANT_SUFFIXES = {
+    ".md", ".canvas", ".base",
+    ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".pdf",
+    ".mp3", ".wav", ".m4a", ".ogg", ".mp4", ".webm", ".mov",
+}
+VISIBLE_DOT_DIRS = {".agents", ".pi", ".agents-global", ".pi-global"}
+ALLOWED_SYMLINK_ROOTS = {
+    ".agents-global": Path(os.environ.get("GLOBAL_AGENTS_PATH", Path.home() / ".agents")).resolve(),
+    ".pi-global": Path(os.environ.get("GLOBAL_PI_PATH", Path.home() / ".pi")).resolve(),
+}
+
+
+def allowed_symlink(candidate: Path, relative: str) -> bool:
+    for alias, target_root in ALLOWED_SYMLINK_ROOTS.items():
+        if relative == alias or relative.startswith(alias + "/"):
+            resolved = candidate.resolve()
+            return resolved == target_root or resolved.is_relative_to(target_root)
+    return False
+
+
+def rules(path: Path = CONFIG) -> tuple[set[str], set[str]]:
+    names = set(DEFAULT_IGNORES)
+    paths: set[str] = set()
+    if path.exists():
+        for raw in path.read_text(encoding="utf-8").splitlines():
+            value = raw.strip().strip("/")
+            if not value or value.startswith("#"):
+                continue
+            (paths if "/" in value else names).add(value)
+    return names, paths
+
+
+def scan(root: Path, config: Path = CONFIG) -> dict:
+    root = root.resolve()
+    if root != VAULT and os.environ.get("OBSIDIAN_TREE_SELF_TEST") != "1":
+        raise SystemExit(f"refusing non-canonical root: {root}")
+    names, ignored_paths = rules(config)
+    folders: set[str] = set()
+    files: list[dict] = []
+    scanned_dirs = 0
+    seen_directories: set[Path] = set()
+
+    def walk_error(error: OSError) -> None:
+        raise error
+
+    for current, dirs, filenames in os.walk(root, followlinks=True, onerror=walk_error):
+        current_path = Path(current)
+        resolved_current = current_path.resolve()
+        if resolved_current in seen_directories:
+            dirs[:] = []
+            continue
+        seen_directories.add(resolved_current)
+        scanned_dirs += 1
+        filtered = []
+        for name in dirs:
+            candidate = current_path / name
+            rel = candidate.relative_to(root).as_posix()
+            if name in names:
+                continue
+            if name.startswith(".") and name not in VISIBLE_DOT_DIRS:
+                continue
+            if candidate.is_symlink() and not allowed_symlink(candidate, rel):
+                continue
+            if any(rel == path or rel.startswith(path + "/") for path in ignored_paths):
+                continue
+            filtered.append(name)
+        dirs[:] = filtered
+
+        for name in filenames:
+            if name.startswith(".") or Path(name).suffix.lower() not in RELEVANT_SUFFIXES:
+                continue
+            candidate = current_path / name
+            rel = candidate.relative_to(root).as_posix()
+            if any(rel == path or rel.startswith(path + "/") for path in ignored_paths):
+                continue
+            if candidate.is_symlink() and not allowed_symlink(candidate, rel):
+                continue
+            info = candidate.stat(follow_symlinks=True)
+            if not stat.S_ISREG(info.st_mode):
+                continue
+            files.append({
+                "path": rel,
+                "type": "file",
+                # Match Remote SSH 1.1.7: its daemon has no distinct creation time.
+                "ctime": info.st_mtime_ns // 1_000_000,
+                "mtime": info.st_mtime_ns // 1_000_000,
+                "size": info.st_size,
+            })
+            parent = Path(rel).parent
+            while parent != Path("."):
+                folders.add(parent.as_posix())
+                parent = parent.parent
+
+    entries = [
+        {"path": path, "type": "folder", "ctime": 0, "mtime": 0, "size": 0}
+        for path in sorted(folders, key=lambda value: (value.count("/"), value))
+    ]
+    entries.extend(sorted(files, key=lambda entry: entry["path"]))
+    return {
+        "schema": "obsidian.relevant-tree.v2",
+        "complete": True,
+        "root": root.as_posix(),
+        "entries": entries,
+        "matching_files": len(files),
+        "scanned_directories": scanned_dirs,
+    }
+
+
+def self_test() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        (root / "docs/deep").mkdir(parents=True)
+        (root / "docs/deep/note.md").write_text("# note\n")
+        (root / "docs/private.md").write_text("# ignored file\n")
+        (root / "src/pkg").mkdir(parents=True)
+        (root / "src/pkg/code.py").write_text("pass\n")
+        (root / "assets").mkdir()
+        (root / "assets/image.png").write_bytes(b"png")
+        (root / ".hidden").mkdir()
+        (root / ".hidden/hidden.md").write_text("# hidden\n")
+        (root / ".agents/skills/demo").mkdir(parents=True)
+        (root / ".agents/skills/demo/SKILL.md").write_text("---\nname: demo\n---\n")
+        (root / "ignored/cache").mkdir(parents=True)
+        (root / "ignored/cache/hidden.md").write_text("# hidden\n")
+        config = root / "ignore.txt"
+        config.write_text("ignored/cache\ndocs/private.md\n")
+        os.environ["OBSIDIAN_TREE_SELF_TEST"] = "1"
+        result = scan(root, config)
+        assert result["schema"] == "obsidian.relevant-tree.v2", result
+        assert result["complete"] is True, result
+        assert [entry["path"] for entry in result["entries"]] == [
+            ".agents", "assets", "docs", ".agents/skills", "docs/deep",
+            ".agents/skills/demo", ".agents/skills/demo/SKILL.md",
+            "assets/image.png", "docs/deep/note.md",
+        ], result
+        assert result["matching_files"] == 3, result
+    print("obsidian-relevant-tree self-test: PASS")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--root", type=Path, default=VAULT)
+    parser.add_argument("--self-test", action="store_true")
+    args = parser.parse_args()
+    if args.self_test:
+        self_test()
+        return
+    print(json.dumps(scan(args.root), ensure_ascii=False, separators=(",", ":")))
+
+
+if __name__ == "__main__":
+    main()

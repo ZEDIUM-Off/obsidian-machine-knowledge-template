@@ -1,0 +1,12 @@
+filters:
+  and:
+    - file.hasTag("review/human-required")
+views:
+  - type: table
+    name: Human Review
+    order:
+      - file.name
+      - type
+      - authority
+      - status
+      - tags

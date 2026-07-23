@@ -1,0 +1,13 @@
+filters:
+  and:
+    - type == "Application"
+views:
+  - type: table
+    name: Applications
+    order:
+      - file.name
+      - version
+      - platforms
+      - status
+      - timestamp
+      - tags

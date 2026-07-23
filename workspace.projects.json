@@ -1,0 +1,11 @@
+{
+  "schema": "workspace.projects.v1",
+  "projects": [
+    {
+      "id": "example-project",
+      "path": "example-project",
+      "color": "#8b5cf6",
+      "icon": "boxes"
+    }
+  ]
+}

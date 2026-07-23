@@ -1,0 +1,13 @@
+filters:
+  and:
+    - type == "Device"
+views:
+  - type: table
+    name: Devices
+    order:
+      - file.name
+      - platform
+      - role
+      - status
+      - timestamp
+      - tags

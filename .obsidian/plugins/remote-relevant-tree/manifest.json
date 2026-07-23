@@ -1,0 +1,9 @@
+{
+  "id": "remote-relevant-tree",
+  "name": "Remote Relevant Tree",
+  "version": "0.3.1",
+  "minAppVersion": "1.5.0",
+  "description": "Restores the relevant remote tree, including approved agent and Pi folders.",
+  "author": "Zedium",
+  "isDesktopOnly": true
+}

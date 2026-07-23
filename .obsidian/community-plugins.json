@@ -1,5 +1,18 @@
 [
   "obsidian-style-settings",
+  "homepage",
+  "mermaid-tools",
+  "advanced-canvas",
+  "breadcrumbs",
+  "obsidian-excalidraw-plugin",
+  "maps",
+  "omnisearch",
+  "open-tab-settings",
+  "project-manager",
+  "templater-obsidian",
+  "remote-relevant-tree",
+  "persistent-graph",
   "notebook-navigator",
+  "remote-ssh",
   "extended-graph"
 ]

@@ -1,21 +1,22 @@
-# Politique de publication
+# Publication policy
 
-Ce dépôt est public par conception. Toute nouvelle donnée est refusée par défaut.
+The repository publishes structure, specifications, visual configuration and reviewed tools only.
 
-## Ne jamais versionner
+## Never version
 
-- `.obsidian/user/**`, `workspace*.json`, récents, caches, logs et récupération de fichiers ;
-- `remote-ssh`, profils d'agents, sessions et fichiers de credentials ;
-- `plugins/*/{main.js,styles.css,manifest.json}` ou thèmes téléchargés ;
-- clés, jetons, cookies, adresses privées, hostnames, noms d'utilisateur, emails et chemins absolus ;
-- notes ou captures provenant directement d'une machine réelle sans revue humaine.
+- `.obsidian/user/**`, workspace/recent state, caches, logs or recovery data;
+- credentials, sessions, remote profiles or agent transcripts;
+- downloaded third-party plugin/theme binaries;
+- machine inventories or project content copied without review.
 
-## Avant publication
+The bundled `remote-relevant-tree` source is the explicit exception: it is maintained with its MIT license and self-test.
+
+## Before push
 
 ```bash
 python3 scripts/check_public.py
+python3 -m unittest scripts/test_sync_visuals.py
+python3 -m unittest tools/kb/test_kb.py
+python3 scripts/sync_visuals.py --check
 git diff --cached
-# Optionnel : gitleaks dir .
 ```
-
-Toute extension de la liste blanche de `scripts/check_public.py` exige une revue manuelle. Un secret publié doit être révoqué : le supprimer d'un commit ne suffit pas.

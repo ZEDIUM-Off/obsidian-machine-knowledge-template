@@ -67,7 +67,7 @@
     }
   ],
   "vaultProfile": "default",
-  "vaultTitle": "Machine Knowledge",
+  "vaultTitle": "Machine Knowledge Workspace",
   "syncModes": {
     "vaultProfile": "synced",
     "homepage": "synced",
@@ -503,26 +503,18 @@
   "fileColors": {},
   "fileBackgroundColors": {},
   "folderIcons": {
+    "docs": "book-open",
+    ".agents": "bot",
+    ".pi": "workflow",
     "_templates": "file-plus-2",
-    "_dashboards": "layout-dashboard",
-    "knowledge": "library-big",
-    "truth": "badge-check",
-    "decisions": "milestone",
-    "work": "flask-conical",
-    "evidence": "scan-search",
-    "raw": "inbox",
-    "assets": "paperclip"
+    "example-project": "boxes"
   },
   "folderColors": {
+    "docs": "#d9a337",
+    ".agents": "#f59e0b",
+    ".pi": "#8b5cf6",
     "_templates": "#64748b",
-    "_dashboards": "#f59e0b",
-    "knowledge": "#8b5cf6",
-    "truth": "#22c55e",
-    "decisions": "#f97316",
-    "work": "#06b6d4",
-    "evidence": "#3b82f6",
-    "raw": "#ef4444",
-    "assets": "#94a3b8"
+    "example-project": "#8b5cf6"
   },
   "folderBackgroundColors": {},
   "folderSortOverrides": {},

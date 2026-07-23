@@ -5,8 +5,21 @@
     "version": "1.5.0"
   },
   "plugins": [
-    { "id": "obsidian-style-settings", "version": "1.0.9" },
-    { "id": "notebook-navigator", "version": "3.2.4" },
-    { "id": "extended-graph", "version": "2.7.45" }
+    { "id": "obsidian-style-settings", "version": "1.0.9", "role": "theme settings" },
+    { "id": "homepage", "version": "4.4.4", "role": "cockpit" },
+    { "id": "mermaid-tools", "version": "1.4.1", "role": "diagrams" },
+    { "id": "advanced-canvas", "version": "6.5.0", "role": "visual reasoning" },
+    { "id": "breadcrumbs", "version": "4.14.3", "role": "relations" },
+    { "id": "obsidian-excalidraw-plugin", "version": "2.25.3", "role": "visual references" },
+    { "id": "maps", "version": "0.1.6", "role": "spatial views" },
+    { "id": "omnisearch", "version": "1.29.3", "role": "interactive search" },
+    { "id": "open-tab-settings", "version": "2.2.0", "role": "workspace UI" },
+    { "id": "project-manager", "version": "1.8.0", "role": "project navigation" },
+    { "id": "templater-obsidian", "version": "2.20.6", "role": "advanced templates" },
+    { "id": "remote-relevant-tree", "version": "0.3.1", "role": "remote dot-tree visibility", "source": "bundled" },
+    { "id": "persistent-graph", "version": "0.3.3", "role": "graph persistence" },
+    { "id": "notebook-navigator", "version": "3.2.4", "role": "colored project navigation" },
+    { "id": "remote-ssh", "version": "1.1.7", "role": "optional remote vault" },
+    { "id": "extended-graph", "version": "2.7.45", "role": "project graph states" }
   ]
 }

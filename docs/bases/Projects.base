@@ -1,0 +1,16 @@
+filters:
+  and:
+    - type == "Project"
+    - file.inFolder("docs/projects")
+views:
+  - type: table
+    name: Projects
+    order:
+      - file.name
+      - status
+      - icon
+      - color
+      - tags
+    sort:
+      - property: file.name
+        direction: ASC

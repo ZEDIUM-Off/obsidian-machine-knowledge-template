@@ -1,36 +1,48 @@
 ---
 type: Guide
-title: Machine Knowledge
+title: Machine Knowledge Workspace
 status: active
 authority: working
 sensitivity: public
+icon: layout-dashboard
 tags:
   - review/human-required
 timestamp: 2026-07-23
 ---
 
-# Machine Knowledge
+# Machine Knowledge Workspace
 
-> [!info] Principe
-> Les notes disent ce qui est connu. Les Bases, Canvas et graphes ne sont que des vues.
+> [!info] Modèle
+> `docs/` possède le global, chaque projet possède son bundle, `.agents/` porte l'état transitoire et `.pi/graphs/` les workflows.
 
-## Entrées
+## Navigation
 
-- [[knowledge/index|Règles et structure]]
+- [[docs/index|Documentation globale]]
+- [[docs/projects|Registre des projets]]
+- [[docs/cross-project-map|Dépendances]]
+- [[docs/knowledge-system/index|Normes OKF]]
+- [[docs/agents/state-and-skills|Agents et skills]]
+- [[docs/agents/extended-graph|États Extended Graph]]
 - [[Atlas|Atlas visuel]]
-- [[_templates/Truth|Nouvelle vérité actuelle]]
-- [[_templates/Decision|Nouvelle décision]]
-- [[_templates/Evidence|Nouvelle preuve]]
-- [[_templates/Raw|Nouvelle capture brute]]
+
+## Projets
+
+![[docs/bases/Projects.base]]
+
+## Setup
+
+![[docs/bases/Devices.base]]
+
+![[docs/bases/Applications.base]]
 
 ## Vérité actuelle
 
-![[_dashboards/Current Truth.base]]
+![[docs/bases/Current Truth.base]]
 
 ## Décisions
 
-![[_dashboards/Decisions.base]]
+![[docs/bases/Decisions.base]]
 
-## Sources et preuves
+## Review humaine
 
-![[_dashboards/Evidence.base]]
+![[docs/bases/Human Review.base]]

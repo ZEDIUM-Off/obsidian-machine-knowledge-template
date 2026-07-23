@@ -1,0 +1,6 @@
+# Basenames or vault-relative paths excluded from the Obsidian remote tree.
+.pi-subagents
+coverage
+storybook-static
+models
+data

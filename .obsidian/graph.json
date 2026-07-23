@@ -1,0 +1,28 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:\"example-project/\"",
+      "color": {
+        "a": 1,
+        "rgb": 9133302
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.15,
+  "lineSizeMultiplier": 1.2,
+  "collapse-forces": true,
+  "centerStrength": 0,
+  "repelStrength": 14,
+  "linkStrength": 0.8,
+  "linkDistance": 160
+}

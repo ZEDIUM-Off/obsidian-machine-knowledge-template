@@ -1,0 +1,21 @@
+name: Template checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install ./tools/kb
+      - run: python3 scripts/check_public.py
+      - run: python3 scripts/sync_visuals.py --check
+      - run: python3 -m unittest scripts/test_sync_visuals.py
+      - run: python3 -m unittest tools/kb/test_kb.py
+      - run: tools/bin/obsidian-relevant-tree --self-test
+      - run: node .obsidian/plugins/remote-relevant-tree/self-test.js

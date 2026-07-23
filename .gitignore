@@ -14,11 +14,23 @@
 !.obsidian/plugins/extended-graph/data.json
 !.obsidian/plugins/notebook-navigator/data.json
 !.obsidian/plugins/obsidian-style-settings/data.json
+!.obsidian/plugins/remote-relevant-tree/main.js
+!.obsidian/plugins/remote-relevant-tree/manifest.json
+!.obsidian/plugins/remote-relevant-tree/self-test.js
+!.obsidian/plugins/remote-relevant-tree/LICENSE
+!.obsidian/plugins/remote-relevant-tree/SOURCE.md
 
 # Contenu local et artefacts d'agents
+.agents-global
+.pi-global
 .pi-subagents/
 .trash/
 .DS_Store
 Thumbs.db
 __pycache__/
 *.pyc
+
+# Python packaging
+*.egg-info/
+build/
+dist/
