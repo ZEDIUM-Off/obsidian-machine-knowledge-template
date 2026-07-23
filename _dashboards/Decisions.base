@@ -1,0 +1,16 @@
+filters:
+  and:
+    - type == "Decision"
+views:
+  - type: table
+    name: Decisions
+    order:
+      - file.name
+      - status
+      - authority
+      - timestamp
+      - supersedes
+      - tags
+    sort:
+      - property: timestamp
+        direction: DESC

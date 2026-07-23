@@ -1,0 +1,24 @@
+# État Obsidian local et sensible
+.obsidian/user/
+.obsidian/workspace*.json
+.obsidian/workspaces.json
+.obsidian/hotkeys.json
+.obsidian/file-recovery/
+.obsidian/cache/
+.obsidian/logs/
+.obsidian/themes/
+.obsidian/plugins/**/main.js
+.obsidian/plugins/**/styles.css
+.obsidian/plugins/**/manifest.json
+.obsidian/plugins/**/data.json
+!.obsidian/plugins/extended-graph/data.json
+!.obsidian/plugins/notebook-navigator/data.json
+!.obsidian/plugins/obsidian-style-settings/data.json
+
+# Contenu local et artefacts d'agents
+.pi-subagents/
+.trash/
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc

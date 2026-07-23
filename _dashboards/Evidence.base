@@ -1,0 +1,16 @@
+filters:
+  or:
+    - authority == "evidence"
+    - authority == "raw"
+views:
+  - type: table
+    name: Evidence and Sources
+    order:
+      - file.name
+      - type
+      - authority
+      - timestamp
+      - tags
+    sort:
+      - property: timestamp
+        direction: DESC

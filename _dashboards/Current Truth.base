@@ -1,0 +1,17 @@
+filters:
+  and:
+    - authority == "canonical"
+    - status != "superseded"
+views:
+  - type: table
+    name: Current Truth
+    order:
+      - file.name
+      - type
+      - status
+      - effective_from
+      - valid_until
+      - tags
+    sort:
+      - property: type
+        direction: ASC

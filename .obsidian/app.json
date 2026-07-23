@@ -1,0 +1,20 @@
+{
+  "attachmentFolderPath": "./knowledge/assets",
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "current",
+  "useMarkdownLinks": false,
+  "userIgnoreFilters": [
+    ".git",
+    "node_modules",
+    "vendor",
+    ".venv",
+    "venv",
+    ".cache",
+    "dist",
+    "build",
+    "coverage",
+    "target",
+    "models",
+    "data"
+  ]
+}
